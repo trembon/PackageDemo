@@ -22,23 +22,23 @@ public class PackageController(ITrackingNumberService trackingNumberService, IPa
 
     [HttpGet("{trackingNumber}")]
     [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PackageResponse))]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
+    [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(string))]
     public async Task<IActionResult> GetPackageDetails(string trackingNumber)
     {
         if (!trackingNumberService.TryParse(trackingNumber, out long parsedTrackingNumber))
-            return BadRequest("Missing or invalid tracking number");
+            return BadRequest("Invalid tracking number");
 
         var package = await packageService.GetByTrackingNumber(parsedTrackingNumber);
         if(package == null)
-            return NotFound();
+            return NotFound("No package found with specified tracking number");
 
         return Ok(package);
     }
 
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(string))]
-    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(string))]
     public async Task<IActionResult> CreatePackageAsync(CreatePackageRequest request)
     {
         var response = await packageService.CreatePackage(request);
