@@ -1,11 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using PackageDemo.Context;
+using PackageDemo.Services;
+using PackageDemo.Services.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IPackageService, PackageService>();
+builder.Services.AddScoped<ITrackingNumberService, TrackingNumberService>();
 
 builder.Services.AddDbContext<PackageContext>(x => x.UseSqlite(builder.Configuration.GetConnectionString("Packages")));
 
