@@ -45,6 +45,6 @@ public class PackageController(ITrackingNumberService trackingNumberService, IPa
         if(response is null || !response.IsValid)
             return BadRequest("Package has invalid measurements");
 
-        return Created($"/package/{response.TrackingNumber}", response.TrackingNumber.ToString());
+        return Created($"/package/{response.TrackingNumber}", response.TrackingNumber);
     }
 }

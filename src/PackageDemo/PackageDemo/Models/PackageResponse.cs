@@ -4,7 +4,7 @@ namespace PackageDemo.Models;
 
 public class PackageResponse(Package package, bool isValid)
 {
-    public long TrackingNumber { get; } = package.TrackingNumber;
+    public string TrackingNumber { get; } = package.TrackingNumber.ToString();
 
     public int Weight { get; } = package.Weight;
 
