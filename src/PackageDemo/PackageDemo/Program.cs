@@ -9,6 +9,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.Configure<RouteOptions>(options => options.LowercaseUrls = true);
+
 builder.Services.AddScoped<IPackageService, PackageService>();
 builder.Services.AddScoped<ITrackingNumberService, TrackingNumberService>();
 builder.Services.AddScoped<IPackageValidationService, PackageValidationService>();
