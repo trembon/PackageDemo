@@ -2,7 +2,7 @@
 
 namespace PackageDemo.Models;
 
-public class PackageResponse(Package package)
+public class PackageResponse(Package package, bool isValid)
 {
     public long TrackingNumber { get; } = package.TrackingNumber;
 
@@ -14,5 +14,5 @@ public class PackageResponse(Package package)
 
     public double Width { get; } = package.Width;
 
-    public bool IsValid { get; }
+    public bool IsValid { get; } = isValid;
 }

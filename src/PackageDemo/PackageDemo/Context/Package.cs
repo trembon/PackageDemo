@@ -30,5 +30,5 @@ public class Package
     /// <summary>
     /// Width of the package in centimeter (cm)
     /// </summary>
-    public int Width { get; set; }
+    public double Width { get; set; }
 }

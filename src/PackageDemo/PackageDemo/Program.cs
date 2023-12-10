@@ -11,6 +11,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IPackageService, PackageService>();
 builder.Services.AddScoped<ITrackingNumberService, TrackingNumberService>();
+builder.Services.AddScoped<IPackageValidationService, PackageValidationService>();
 
 builder.Services.AddDbContext<PackageContext>(x => x.UseSqlite(builder.Configuration.GetConnectionString("Packages")));
 
